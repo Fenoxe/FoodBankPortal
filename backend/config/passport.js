@@ -34,9 +34,11 @@ module.exports = function(passport) {
                 if (user) return done(null, false, req.flash('signupMessage', 'That username is already taken.'))
 
                 const newUser = new User()
+                const d = new Date()
 
                 newUser.local.username = username
                 newUser.local.password = newUser.generateHash(password)
+                newUser.local.signupdate = d.getTime()
 
                 newUser.save((err) => {
                     

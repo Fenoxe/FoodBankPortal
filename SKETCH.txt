@@ -86,3 +86,7 @@ Data
      Appointments Table
         list of appointments
     
+	
+MONGO DB:
+	user=MDBFBPUser
+	pass=66B18f3GAWe11AKq
