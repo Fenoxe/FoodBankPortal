@@ -9,28 +9,28 @@ export default class NavBar extends Component {
 
             <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
 
-                <Link to="/" className="navbar-brand">Welcome</Link>>
-                <div className="collapse">
+                <Link to="/" className="navbar-brand">Welcome</Link>
+                <div className="collpase">
                 <ul className="navbar-nav mr-auto">
 
                     <li className="navbar-item">
-                    <Link to="/" className="nav-link">Home</Link>>
+                    <Link to="/home" className="nav-link">Home</Link>
                     </li>
 
                     <li className="navbar-item">
-                    <Link to="/login" className="nav-link">Log In</Link>>
+                    <Link to="/login" className="nav-link">Log In</Link>
                     </li>
 
                     <li className="navbar-item">
-                    <Link to="/signup" className="nav-link">Sign Up</Link>>
+                    <Link to="/signup" className="nav-link">Sign Up</Link>
                     </li>
 
                     <li className="navbar-item">
-                    <Link to="/profile" className="nav-link">Profile</Link>>
+                    <Link to="/profile" className="nav-link">Profile</Link>
                     </li>
 
                     <li className="navbar-item">
-                    <Link to="/logout" className="nav-link">Log Out</Link>>
+                    <Link to="/logout" className="nav-link">Log Out</Link>
                     </li>
 
                 </ul>
