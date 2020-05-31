@@ -12,11 +12,13 @@ module.exports = (app, passport) => {
     })
 
     // process login form
-    app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile',
-        failureRedirect : '/login',
-        failureFlash    : true
-    }))
+    app.post('/login', (req, res, next) => {
+        passport.authenticate('local-login', {
+            successRedirect : '/dashboard',
+            failureRedirect : '/login',
+            failureFlash    : true
+        })(req, res, next)
+    })
 
     // signup page
     app.get('/signup', (req, res) => {
@@ -25,18 +27,20 @@ module.exports = (app, passport) => {
     })
 
     // process signup form
-    app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/profile',
-        failureRedirect : '/signup',
-        failureFlash    : true
-    }))
+    app.post('/signup', (req, res, next) => {
+        passport.authenticate('local-signup', {
+            successRedirect : '/dashboard',
+            failureRedirect : '/signup',
+            failureFlash    : true
+        })(req, res, next)
+    })
 
     // profile
-    app.get('/profile', isLoggedIn, (req, res) => {
+    app.get('/dashboard', isLoggedIn, (req, res) => {
         // res.render('profile.ejs', {
         //     user : req.user
         // })
-        res.json('get profile')
+        res.json('get dashboard')
     })
 
     // logout

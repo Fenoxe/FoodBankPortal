@@ -1,27 +1,45 @@
-import React from 'react'
+import React, { Component } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
 import { BrowserRouter as Router, Route } from "react-router-dom"
-import NavBar from "./components/navbar.component"
-import WelcomeComponent from "./components/welcome.component"
-import LoginComponent from "./components/login.component"
-import SignUpComponent from "./components/signup.component"
-import ProfileComponent from "./components/profile.component"
-import LogoutComponent from "./components/logout.component"
+import WelcomeComponent from "./components/useraccount/welcome.component"
+import LoginComponent from "./components/useraccount/login.component"
+import SignUpComponent from "./components/useraccount/signup.component"
+import DashboardComponent from "./components/dashboard/dashboard.component"
+import LogoutComponent from "./components/useraccount/logout.component"
+import SettingsComponent from "./components/dashboard/settings/settings.component.js"
+import PrivateRoute from "./components/useraccount/microcomponents/privateroute.component"
 
-function App() {
-  return (
-    <Router>
-      <div className="container">
-        <NavBar />
-        <br/>
-        <Route path="/home" component={WelcomeComponent} />
-        <Route path="/login" component={LoginComponent} />
-        <Route path="/signup" component={SignUpComponent} />
-        <Route path="/profile" component={ProfileComponent} />
-        <Route path="/logout" component={LogoutComponent} />
-      </div>
-    </Router>
-  );
+export default class App extends Component {
+  
+  render() {
+    return (
+      <Router>
+          <PrivateRoute
+            path="/dashboard/settings"
+            component={SettingsComponent}
+          />
+          <Route
+            path="/login"
+            component={LoginComponent}
+          />
+          <Route
+            path="/signup"
+            component={SignUpComponent}
+          />
+          <PrivateRoute
+            loggedIn={ this.props.appState.loggedIn }
+            path="/dashboard"
+            component={DashboardComponent}
+          />
+          <Route
+            path="/logout"
+            component={LogoutComponent}
+          />
+          <Route
+            exact path="/"
+            component={WelcomeComponent}
+          />
+      </Router>
+    )
+  }
 }
-
-export default App;

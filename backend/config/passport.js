@@ -7,12 +7,12 @@ module.exports = function(passport) {
 
     // passport session setup
     passport.serializeUser((user, done) => {
-        done(null, user.id)
+        return done(null, user.id)
     })
 
     passport.deserializeUser((id, done) => {
         User.findById(id, (err, user) => {
-            done(err, user)
+            return done(err, user)
         })
     })
 
@@ -26,7 +26,6 @@ module.exports = function(passport) {
     }, (req, username, password, done) => {
         
         process.nextTick(() => {
-
             User.findOne({'local.username' : username }, (err, user) => {
 
                 if (err) return done(err)
@@ -38,12 +37,17 @@ module.exports = function(passport) {
 
                 newUser.local.username = username
                 newUser.local.password = newUser.generateHash(password)
-                newUser.local.signupdate = d.getTime()
+                newUser.local.createdon = d.getTime()
+
+                newUser.local.agencytype = req.body.agencyType
+                newUser.local.agencyname = req.body.agencyName
+                if (newUser.local.agencytype === "nonProfitAgency") {
+                    newUser.local.agencyref = req.body.agencyRef
+                }                
 
                 newUser.save((err) => {
-                    
                     if (err) throw err
-
+                    
                     return done(null, newUser)
 
                 })

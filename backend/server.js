@@ -27,7 +27,7 @@ connection.once('open', () => {
     console.log('mongodb connection established successfully')
 })
 
-
+app.use(passport.initialize())
 // config express app ========================================
 app.use(cors())
 app.use(express.json())
@@ -39,7 +39,6 @@ app.use(cookieParser())
 require('./config/passport')(passport)
 
 app.use(session({ secret: 'verygoodsecretsaregood2000' }))
-app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 

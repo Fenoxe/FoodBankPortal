@@ -5,16 +5,28 @@ var bcrypt = require('bcrypt-nodejs')
 var userSchema = mongoose.Schema({
     local: {
         username    : {
-            type: String,
+            type    : String,
             required: true,
-            index: { unique: true }
+            index   : { unique: true }
         },
         password    : {
-            type: String,
+            type    : String,
             required: true
         },
-        signupdate  : {
-            type: Date,
+        agencytype  : {
+            type    : String,
+            required: true
+        },
+        agencyname  : {
+            type    : String,
+            required: true
+        },
+        agencyref   : {
+            type    : String,
+            required: false
+        },
+        createdon   : {
+            type    : Date,
             required: true
         }
     }
